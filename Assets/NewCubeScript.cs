@@ -37,24 +37,24 @@ public class NewCubeScript : MonoBehaviour
         }
 
         // moving up down left and right
-        if (Input.GetKey("up"))
+        if (Input.GetKey("up") && transform.position.z < 4.5f)
         {
-            transform.position += new Vector3(0, 0, 0.01f);
+            transform.position += new Vector3(0, 0, 0.02f);
         }
 
-        if (Input.GetKey("down"))
+        if (Input.GetKey("down") && transform.position.z > -4.5f)
         {
-            transform.position += new Vector3(0, 0, -0.01f);
+            transform.position += new Vector3(0, 0, -0.02f);
         }
 
-        if (Input.GetKey("left"))
+        if (Input.GetKey("left") && transform.position.x > -4.5f)
         {
-            transform.position += new Vector3(-0.01f, 0, 0);
+            transform.position += new Vector3(-0.02f, 0, 0);
         }
 
-        if (Input.GetKey("right"))
+        if (Input.GetKey("right") && transform.position.x < 4.5f)
         {
-            transform.position += new Vector3(0.01f, 0, 0);
+            transform.position += new Vector3(0.02f, 0, 0);
         }
     }
 
