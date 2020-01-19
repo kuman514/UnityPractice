@@ -19,8 +19,5 @@ public class ObstacleBehavior : MonoBehaviour
             // Reset Position
             transform.position = new Vector3(Random.Range(-4.5f, 4.5f), 0, 10f);
         }
-
-        // Box Hit
-        // ...
     }
 }

@@ -37,34 +37,49 @@ public class NewCubeScript : MonoBehaviour
         }
 
         // moving up down left and right
-        if (Input.GetKey("up") && transform.position.z < 4.5f)
+        if (Input.GetKey("up"))
         {
             transform.position += new Vector3(0, 0, 0.02f);
         }
 
-        if (Input.GetKey("down") && transform.position.z > -4.5f)
+        if (Input.GetKey("down"))
         {
             transform.position += new Vector3(0, 0, -0.02f);
         }
 
-        if (Input.GetKey("left") && transform.position.x > -4.5f)
+        if (Input.GetKey("left"))
         {
             transform.position += new Vector3(-0.02f, 0, 0);
         }
 
-        if (Input.GetKey("right") && transform.position.x < 4.5f)
+        if (Input.GetKey("right"))
         {
             transform.position += new Vector3(0.02f, 0, 0);
+        }
+
+        // falling down -> revive
+        if(transform.position.y < -20f)
+        {
+            transform.position = new Vector3(0, 5f, 0);
         }
     }
 
     private void OnCollisionEnter(Collision col)
     {
         // if the cube is on the floor...
-        if(col.gameObject.tag == "floor")
+        if (col.gameObject.tag == "floor")
         {
             isGround = true;
             jumpCount = 1;
+        }
+
+        // collide and the cube will fly out
+        if (col.gameObject.tag == "obstacle")
+        {
+            isGround = false;
+            jumpCount = 0;
+
+            rb.AddForce(transform.position.x * 200f, 500f, -600f);
         }
     }
 }
